@@ -11,6 +11,7 @@
 | **✅ 褪色 mono** | **正式版（终选 2026-07-15）** | `#EEEBE0`（官方 icon 米底）/ `#1E1E1E`（Primary 1）/ `#7E97BD`（官方蓝 #4B96FF 降饱和） | `out-faded-mono/` |
 | 褪色七色 | 备份 · 特殊场合备用 | 同底同墨 / 7 组各一 dusty 色 | `out-faded-family/` |
 | v1 同族七色 | legacy · 旧嵌入链接专用，路径冻结 | `#F4F3F1` / `#1B1D21` / 7 组饱和色 | `out/`（tag `illustrations-v1`） |
+| 官方非褪色 | 对照存档 · 仅画廊/对比展示，不用于嵌入 | 同底同墨 / 官方蓝原样 `#0E6EF4` | `out-official-beige/` |
 
 选型理由与全过程见 4 列对比归档（内部 planning 目录）。要点：mono 品牌血缘最纯、加新空间零配色决策、Circle 里空间名永远在图旁所以颜色导航是冗余；淘汰过两稿（#EEEEEE 底艳蓝 mono、米底非褪色 #0E6EF4）。
 

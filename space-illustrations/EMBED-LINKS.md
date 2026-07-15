@@ -12,6 +12,7 @@
 | **✅ 褪色 mono** | **正式版（2026-07-15 终选）· 新用途一律用它** | `out-faded-mono/` |
 | 褪色七色 | 备份 · 特殊场合备用，平时不用 | `out-faded-family/` |
 | v1 同族七色 | legacy · 已复制出去的旧链接靠它活着，永久保留 | `out/` |
+| 官方非褪色 | 对照存档 · 仅画廊/对比里展示，不出嵌入链接 | `out-official-beige/` |
 
 raw = 推送后即用；Pages = CDN 更稳。永久钉死某版本：URL 里 `main` 换成 tag（v1 有 `illustrations-v1`）。
 
