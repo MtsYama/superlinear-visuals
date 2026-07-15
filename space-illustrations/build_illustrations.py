@@ -297,6 +297,26 @@ def m_field(a, t):
 MOTIFS = dict(townhall=m_townhall, plaza=m_plaza, club=m_club, venue=m_venue,
               studio=m_studio, courses=m_courses, field=m_field)
 
+# ---------------------------------------------------------------- wide (16:9 横版)
+# 2026-07-15 手机 app 实测: Circle 空间导航卡 ≈1.63:1, 名称+描述叠印在图的左侧+下部。
+# 横版构图: 主体右置(中心 x=920/1280 ≈72%W) · 左 52% + 底 28% 留白给叠字 ·
+# 全出血无卡框(裁切不露边) · 抗 1.5:1~2:1 中心裁。1:1 方版保留为 base。
+WIDE_W, WIDE_H = 1280, 720
+WIDE_DX, WIDE_DY = 598, -46  # 640 系坐标平移: 主体中心 322→920 · 基线 486→440(下方 280px 让给叠印描述文字)
+
+def build_wide_svg(slug, accent, tint):
+    dots = (f'<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">'
+            f'<circle cx="2" cy="2" r="1.5" fill="{accent}" opacity="0.13"/></pattern>')
+    ground = rect(0, 0, WIDE_W, WIDE_H, fill=GROUND)
+    tex    = rect(0, 0, WIDE_W, WIDE_H, fill="url(#dots)")
+    plat   = (rect(730, 440, 380, 12, fill=INK, op=0.06, rx=6) +
+              line(738, 440, 1102, 440, stroke=INK, sw=2, op=0.85))
+    motif  = MOTIFS[slug](accent, tint)
+    return (f'<svg viewBox="0 0 {WIDE_W} {WIDE_H}" width="{WIDE_W}" height="{WIDE_H}" '
+            f'xmlns="http://www.w3.org/2000/svg" role="img">\n'
+            f'<defs>{dots}</defs>\n  {ground}\n  {tex}\n  {plat}\n'
+            f'  <g transform="translate({WIDE_DX},{WIDE_DY})">\n    {motif}\n  </g>\n</svg>\n')
+
 # ---------------------------------------------------------------- assemble
 def build_svg(slug, accent, tint):
     open_g, defs, card = frame_open(accent, tint)
@@ -493,7 +513,7 @@ def build_gallery(here):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--wide", action="store_true", help="超长超扁版(预留)")
+    ap.add_argument("--wide", action="store_true", help="横版 16:9(1280x720) · 主体右置 · 左/下留叠字区 · 出 <outdir>/wide/")
     ap.add_argument("--palette", choices=list(PALETTES), default="v1",
                     help="v1=旧版(默认·路径冻结) · mono=正式 · seven=备份 · vivid=对照")
     args = ap.parse_args()
@@ -504,6 +524,14 @@ def main():
     here = os.path.dirname(os.path.abspath(__file__))
     out = os.path.join(here, pal["outdir"])
     os.makedirs(out, exist_ok=True)
+    if args.wide:  # 横版模式: 只出 16:9 到 <outdir>/wide/, 不动方版/画廊
+        wout = os.path.join(out, "wide")
+        os.makedirs(wout, exist_ok=True)
+        for slug, cn, tier, accent, tint in pal["groups"]:
+            with open(os.path.join(wout, f"{slug}.svg"), "w", encoding="utf-8") as f:
+                f.write(build_wide_svg(slug, accent, tint))
+        print("wide:", len(pal["groups"]), "svg ->", wout)
+        return
     cards = []
     for slug, cn, tier, accent, tint in pal["groups"]:
         svg = build_svg(slug, accent, tint)

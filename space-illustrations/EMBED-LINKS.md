@@ -32,6 +32,22 @@
 
 Pages 版（CDN 更稳）：把域名段换成 `https://mtsyama.github.io/superlinear-visuals/`，路径不变。
 
+### 📱 mono 横版 wide（responsive campaign · 2026-07-15 加）
+
+**用在会被叠印文字的横卡位**（手机 app 空间导航卡等）：16:9 · 2560×1440 · 主体右上、左侧+底部留白给 Circle 叠字 · 抗 1.5:1~2:1 中心裁。1:1 方版仍是 base，用在方形位。
+
+前缀：`https://raw.githubusercontent.com/MtsYama/superlinear-visuals/main/space-illustrations/out-mono/wide/png/`
+
+| 空间 | 横版 PNG 直链 |
+|---|---|
+| 市政厅 | `…/out-mono/wide/png/townhall.png` |
+| 广场 | `…/out-mono/wide/png/plaza.png` |
+| 俱乐部 | `…/out-mono/wide/png/club.png` |
+| 会场 | `…/out-mono/wide/png/venue.png` |
+| 工作室 | `…/out-mono/wide/png/studio.png` |
+| 课程 | `…/out-mono/wide/png/courses.png` |
+| 实验田 | `…/out-mono/wide/png/field.png` |
+
 ## seven · 备份（特殊场合）
 
 前缀 `.../main/space-illustrations/out-seven/png/`，7 个 slug 同上。7 组各一 dusty 色（townhall `#6E8CAE` / plaza `#6D9E96` / club `#9284AE` / venue `#C0A36E` / studio `#C08A6B` / courses `#7A85A8` / field `#99A566`）。
