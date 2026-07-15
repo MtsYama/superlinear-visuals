@@ -1,156 +1,66 @@
 <!doctype html><html lang="zh"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Stay Superlinear · Space Group 插图</title>
+<title>Stay Superlinear · Space Group 矢量插图</title>
 <style>
-:root{--bg:#F4F3F1;--ink:#1B1D21;--soft:#585C63}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);
- font-family:"Segoe UI",Manrope,system-ui,-apple-system,sans-serif;padding:48px}
+body{margin:0;background:#F4F3F1;color:#1B1D21;
+ font-family:"Segoe UI",Manrope,system-ui,-apple-system,sans-serif;padding:48px;transition:background .25s}
 h1{font-size:26px;font-weight:700;margin:0 0 6px}
-.sub{color:var(--soft);font-size:16px;margin:0 0 8px}
-.pal{display:flex;gap:8px;margin:18px 0 34px}
+.sub{color:#585C63;font-size:16px;margin:0 0 14px}
+.btns{display:flex;gap:10px;margin:0 0 14px;flex-wrap:wrap}
+.btns button{font:600 14.5px/1 "Segoe UI",sans-serif;padding:9px 16px;border-radius:999px;
+ border:1.5px solid rgba(0,0,0,.25);background:#fff;color:#1B1D21;cursor:pointer}
+.btns button.on{background:#1B1D21;color:#fff;border-color:#1B1D21}
+.pal{display:flex;gap:8px;margin:0 0 26px}
 .pal span{width:34px;height:34px;border-radius:8px;border:1px solid rgba(0,0,0,.12)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:26px}
 figure{margin:0;background:#fff;border:1px solid rgba(0,0,0,.10);border-radius:18px;
  overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .art{position:relative}
-.art svg{display:block;width:100%;height:auto}
+.art img{display:block;width:100%;height:auto}
 .crop-guide{position:absolute;inset:0;display:none;pointer-events:none}
 .crop-guide svg{width:100%;height:100%}
 .crop-guide rect{fill:none;stroke-width:1.4;vector-effect:non-scaling-stroke;stroke-dasharray:5 5}
 .crop-guide .g43{stroke:#D8564B}
 .crop-guide .g34{stroke:#2F6FB0}
 body.guides .crop-guide{display:block}
-.tog{display:inline-flex;align-items:center;gap:8px;font-size:15px;color:var(--soft);
+.tog{display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#585C63;
  margin:0 0 22px;cursor:pointer;user-select:none}
 .tog i{font-style:normal;color:#D8564B} .tog b{font-weight:600;color:#2F6FB0}
 figcaption{display:flex;align-items:center;gap:9px;padding:13px 16px;border-top:1px solid rgba(0,0,0,.08)}
 figcaption b{font-size:16px}
-figcaption small{color:var(--soft);font-size:13px;margin-left:auto}
+figcaption small{color:#585C63;font-size:13px;margin-left:auto}
 .dot{width:11px;height:11px;border-radius:50%;flex:none}
 </style></head><body>
 <h1>Stay Superlinear · Space Group 矢量插图</h1>
-<p class="sub">7 组 · 1:1 · SVG（可改可缩放）· 同族配色 + 统一点纹 · 浅底极简</p>
-<div class="pal"><span title="市政厅 #3E6FB0" style="background:#3E6FB0"></span><span title="广场 #2E9C8D" style="background:#2E9C8D"></span><span title="俱乐部 #7A5AA6" style="background:#7A5AA6"></span><span title="会场 #BE8C2C" style="background:#BE8C2C"></span><span title="工作室 #BE6438" style="background:#BE6438"></span><span title="课程 #3A4C86" style="background:#3A4C86"></span><span title="实验田 #79982F" style="background:#79982F"></span></div>
+<p class="sub" id="sub"></p>
+<div class="btns" id="btns"><button data-key="family">v1 七色·现行链接</button><button data-key="faded-mono">褪色 mono ✅ 终选</button><button data-key="faded-family">褪色七色·备选</button></div>
+<div class="pal" id="pal"></div>
 <label class="tog"><input type="checkbox" id="tg"> 显示裁切安全线（<i>红 4:3</i> / <b>蓝 3:4</b> 中心裁切 · 关键元素应落在两框交叠的中心区内）</label>
-<div class="grid"><figure><div class="art"><svg viewBox="0 0 640 640" width="640" height="640" xmlns="http://www.w3.org/2000/svg" role="img">
-  <defs><clipPath id="card"><rect x="24" y="24" width="592" height="592" rx="30"/></clipPath><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#3E6FB0" opacity="0.13"/></pattern></defs>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="#F4F3F1" stroke="none" stroke-width="0" opacity="1" />
-  <g clip-path="url(#card)">
-    <rect x="24.0" y="24.0" width="592.0" height="592.0" fill="url(#dots)" stroke="none" stroke-width="0" opacity="1" />
-    
-    <rect x="70.0" y="486.0" width="500.0" height="12.0" rx="6" fill="#1B1D21" stroke="none" stroke-width="0" opacity="0.06" /><line x1="78.0" y1="486.0" x2="562.0" y2="486.0" stroke="#1B1D21" stroke-width="2" opacity="0.85" stroke-linecap="round"/>
-    <polygon points="180.0,296.0 322.0,214.0 464.0,296.0" fill="#CBD9EC" stroke="#1B1D21" stroke-width="2.5" opacity="1" stroke-linejoin="round"/>
-    <circle cx="322.0" cy="262.0" r="17.0" fill="#3E6FB0" stroke="none" stroke-width="0" opacity="1"/><circle cx="322.0" cy="262.0" r="17.0" fill="none" stroke="#1B1D21" stroke-width="2" opacity="1"/>
-    <line x1="322.0" y1="214.0" x2="322.0" y2="188.0" stroke="#1B1D21" stroke-width="2.5" opacity="1" stroke-linecap="round"/><polygon points="322.0,190.0 352.0,198.0 322.0,206.0" fill="#3E6FB0" stroke="#1B1D21" stroke-width="1.5" opacity="1" stroke-linejoin="round"/>
-    <rect x="190.0" y="296.0" width="264.0" height="22.0" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" />
-    <rect x="201.0" y="322.0" width="26.0" height="150.0" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="197.0" y="316.0" width="34.0" height="8.0" fill="#CBD9EC" stroke="#1B1D21" stroke-width="2" opacity="1" /><line x1="214.0" y1="330.0" x2="214.0" y2="466.0" stroke="#1B1D21" stroke-width="1.2" opacity="0.35" stroke-linecap="round"/><rect x="255.0" y="322.0" width="26.0" height="150.0" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="251.0" y="316.0" width="34.0" height="8.0" fill="#CBD9EC" stroke="#1B1D21" stroke-width="2" opacity="1" /><line x1="268.0" y1="330.0" x2="268.0" y2="466.0" stroke="#1B1D21" stroke-width="1.2" opacity="0.35" stroke-linecap="round"/><rect x="309.0" y="322.0" width="26.0" height="150.0" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="305.0" y="316.0" width="34.0" height="8.0" fill="#CBD9EC" stroke="#1B1D21" stroke-width="2" opacity="1" /><line x1="322.0" y1="330.0" x2="322.0" y2="466.0" stroke="#1B1D21" stroke-width="1.2" opacity="0.35" stroke-linecap="round"/><rect x="363.0" y="322.0" width="26.0" height="150.0" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="359.0" y="316.0" width="34.0" height="8.0" fill="#CBD9EC" stroke="#1B1D21" stroke-width="2" opacity="1" /><line x1="376.0" y1="330.0" x2="376.0" y2="466.0" stroke="#1B1D21" stroke-width="1.2" opacity="0.35" stroke-linecap="round"/><rect x="417.0" y="322.0" width="26.0" height="150.0" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="413.0" y="316.0" width="34.0" height="8.0" fill="#CBD9EC" stroke="#1B1D21" stroke-width="2" opacity="1" /><line x1="430.0" y1="330.0" x2="430.0" y2="466.0" stroke="#1B1D21" stroke-width="1.2" opacity="0.35" stroke-linecap="round"/>
-    <rect x="176.0" y="472.0" width="292.0" height="12.0" fill="#CBD9EC" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="158.0" y="484.0" width="328.0" height="12.0" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" />
-  </g>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="none" stroke="#1B1D21" stroke-width="1.5" opacity="0.14" />
-</svg>
-<div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" style="background:#3E6FB0"></span><b>市政厅</b><small>免费区 · townhall</small></figcaption></figure>
-<figure><div class="art"><svg viewBox="0 0 640 640" width="640" height="640" xmlns="http://www.w3.org/2000/svg" role="img">
-  <defs><clipPath id="card"><rect x="24" y="24" width="592" height="592" rx="30"/></clipPath><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#2E9C8D" opacity="0.13"/></pattern></defs>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="#F4F3F1" stroke="none" stroke-width="0" opacity="1" />
-  <g clip-path="url(#card)">
-    <rect x="24.0" y="24.0" width="592.0" height="592.0" fill="url(#dots)" stroke="none" stroke-width="0" opacity="1" />
-    
-    <rect x="70.0" y="486.0" width="500.0" height="12.0" rx="6" fill="#1B1D21" stroke="none" stroke-width="0" opacity="0.06" /><line x1="78.0" y1="486.0" x2="562.0" y2="486.0" stroke="#1B1D21" stroke-width="2" opacity="0.85" stroke-linecap="round"/>
-    <path d="M 150 300 Q 322 346 494 300" fill="none" stroke="#1B1D21" stroke-width="1.6" opacity="0.65" stroke-linecap="round" stroke-linejoin="round"/>
-    <polygon points="139.0,300.0 161.0,300.0 150.0,320.0" fill="#2E9C8D" stroke="#1B1D21" stroke-width="1.3" opacity="1" stroke-linejoin="round"/><polygon points="196.0,316.0 218.0,316.0 207.0,336.0" fill="#C3E2DC" stroke="#1B1D21" stroke-width="1.3" opacity="1" stroke-linejoin="round"/><polygon points="253.0,328.0 275.0,328.0 264.0,348.0" fill="#2E9C8D" stroke="#1B1D21" stroke-width="1.3" opacity="1" stroke-linejoin="round"/><polygon points="311.0,333.0 333.0,333.0 322.0,353.0" fill="#C3E2DC" stroke="#1B1D21" stroke-width="1.3" opacity="1" stroke-linejoin="round"/><polygon points="369.0,328.0 391.0,328.0 380.0,348.0" fill="#2E9C8D" stroke="#1B1D21" stroke-width="1.3" opacity="1" stroke-linejoin="round"/><polygon points="426.0,316.0 448.0,316.0 437.0,336.0" fill="#C3E2DC" stroke="#1B1D21" stroke-width="1.3" opacity="1" stroke-linejoin="round"/><polygon points="483.0,300.0 505.0,300.0 494.0,320.0" fill="#2E9C8D" stroke="#1B1D21" stroke-width="1.3" opacity="1" stroke-linejoin="round"/>
-    <rect x="250.0" y="452.0" width="144.0" height="26.0" rx="13" fill="#C3E2DC" stroke="#1B1D21" stroke-width="2" opacity="1" />
-    <rect x="316.0" y="404.0" width="12.0" height="50.0" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" />
-    <rect x="288.0" y="396.0" width="68.0" height="16.0" rx="8" fill="#C3E2DC" stroke="#1B1D21" stroke-width="2" opacity="1" />
-    <circle cx="322.0" cy="390.0" r="7.0" fill="#2E9C8D" stroke="#1B1D21" stroke-width="2" opacity="1"/>
-    <path d="M 316 400 Q 292 426 300 450" fill="none" stroke="#2E9C8D" stroke-width="2" opacity="0.7" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M 328 400 Q 352 426 344 450" fill="none" stroke="#2E9C8D" stroke-width="2" opacity="0.7" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="300.0" cy="452.0" r="3.0" fill="#2E9C8D" stroke="none" stroke-width="0" opacity="0.8"/><circle cx="344.0" cy="452.0" r="3.0" fill="#2E9C8D" stroke="none" stroke-width="0" opacity="0.8"/><circle cx="322.0" cy="384.0" r="3.2" fill="#2E9C8D" stroke="none" stroke-width="0" opacity="1"/>
-  </g>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="none" stroke="#1B1D21" stroke-width="1.5" opacity="0.14" />
-</svg>
-<div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" style="background:#2E9C8D"></span><b>广场</b><small>免费区 · plaza</small></figcaption></figure>
-<figure><div class="art"><svg viewBox="0 0 640 640" width="640" height="640" xmlns="http://www.w3.org/2000/svg" role="img">
-  <defs><clipPath id="card"><rect x="24" y="24" width="592" height="592" rx="30"/></clipPath><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#7A5AA6" opacity="0.13"/></pattern></defs>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="#F4F3F1" stroke="none" stroke-width="0" opacity="1" />
-  <g clip-path="url(#card)">
-    <rect x="24.0" y="24.0" width="592.0" height="592.0" fill="url(#dots)" stroke="none" stroke-width="0" opacity="1" />
-    
-    <rect x="70.0" y="486.0" width="500.0" height="12.0" rx="6" fill="#1B1D21" stroke="none" stroke-width="0" opacity="0.06" /><line x1="78.0" y1="486.0" x2="562.0" y2="486.0" stroke="#1B1D21" stroke-width="2" opacity="0.85" stroke-linecap="round"/>
-    <rect x="150.0" y="374.0" width="18.0" height="80.0" rx="9" fill="#DACFEA" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="168.0" y="390.0" width="12.0" height="42.0" fill="#7A5AA6" stroke="none" stroke-width="0" opacity="0.28" /><rect x="162.0" y="430.0" width="58.0" height="20.0" rx="8" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="210.0" y="410.0" width="15.0" height="40.0" rx="7" fill="#DACFEA" stroke="#1B1D21" stroke-width="2" opacity="1" /><line x1="170.0" y1="450.0" x2="170.0" y2="470.0" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="216.0" y1="450.0" x2="216.0" y2="470.0" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linecap="round"/>
-    <rect x="360.0" y="396.0" width="130.0" height="42.0" rx="12" fill="#DACFEA" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="368.0" y="428.0" width="116.0" height="26.0" rx="10" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" /><line x1="426.0" y1="430.0" x2="426.0" y2="452.0" stroke="#1B1D21" stroke-width="1.6" opacity="0.5" stroke-linecap="round"/><rect x="352.0" y="414.0" width="16.0" height="40.0" rx="7" fill="#DACFEA" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="484.0" y="414.0" width="16.0" height="40.0" rx="7" fill="#DACFEA" stroke="#1B1D21" stroke-width="2" opacity="1" /><line x1="366.0" y1="454.0" x2="366.0" y2="470.0" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="486.0" y1="454.0" x2="486.0" y2="470.0" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linecap="round"/>
-    <rect x="268.0" y="440.0" width="50.0" height="12.0" rx="6" fill="#DACFEA" stroke="#1B1D21" stroke-width="2" opacity="1" /><line x1="276.0" y1="452.0" x2="276.0" y2="470.0" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="310.0" y1="452.0" x2="310.0" y2="470.0" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linecap="round"/><circle cx="293.0" cy="430.0" r="7.0" fill="#7A5AA6" stroke="#1B1D21" stroke-width="2" opacity="1"/>
-    <line x1="300.0" y1="150.0" x2="300.0" y2="206.0" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="280.0,206.0 320.0,206.0 311.0,234.0 289.0,234.0" fill="#DACFEA" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linejoin="round"/><circle cx="300.0" cy="240.0" r="5.0" fill="#7A5AA6" stroke="none" stroke-width="0" opacity="1"/>
-  </g>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="none" stroke="#1B1D21" stroke-width="1.5" opacity="0.14" />
-</svg>
-<div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" style="background:#7A5AA6"></span><b>俱乐部</b><small>Stay Superlinear · club</small></figcaption></figure>
-<figure><div class="art"><svg viewBox="0 0 640 640" width="640" height="640" xmlns="http://www.w3.org/2000/svg" role="img">
-  <defs><clipPath id="card"><rect x="24" y="24" width="592" height="592" rx="30"/></clipPath><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#BE8C2C" opacity="0.13"/></pattern></defs>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="#F4F3F1" stroke="none" stroke-width="0" opacity="1" />
-  <g clip-path="url(#card)">
-    <rect x="24.0" y="24.0" width="592.0" height="592.0" fill="url(#dots)" stroke="none" stroke-width="0" opacity="1" />
-    
-    <rect x="70.0" y="486.0" width="500.0" height="12.0" rx="6" fill="#1B1D21" stroke="none" stroke-width="0" opacity="0.06" /><line x1="78.0" y1="486.0" x2="562.0" y2="486.0" stroke="#1B1D21" stroke-width="2" opacity="0.85" stroke-linecap="round"/>
-    <circle cx="322.0" cy="190.0" r="12.0" fill="#BE8C2C" stroke="#1B1D21" stroke-width="2" opacity="1"/>
-    <polygon points="322.0,196.0 230.0,300.0 414.0,300.0" fill="#ECDBB0" stroke="none" stroke-width="0" opacity="0.55" stroke-linejoin="round"/>
-    <rect x="196.0" y="288.0" width="252.0" height="14.0" rx="4" fill="#ECDBB0" stroke="#1B1D21" stroke-width="2" opacity="1" />
-    <rect x="214.0" y="300.0" width="216.0" height="118.0" rx="6" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2.5" opacity="1" />
-    <path d="M 196 300 q 10 40 0 80" fill="none" stroke="#1B1D21" stroke-width="1.4" opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M 238 300 q 10 40 0 80" fill="none" stroke="#1B1D21" stroke-width="1.4" opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M 280 300 q 10 40 0 80" fill="none" stroke="#1B1D21" stroke-width="1.4" opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M 322 300 q 10 40 0 80" fill="none" stroke="#1B1D21" stroke-width="1.4" opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M 364 300 q 10 40 0 80" fill="none" stroke="#1B1D21" stroke-width="1.4" opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M 406 300 q 10 40 0 80" fill="none" stroke="#1B1D21" stroke-width="1.4" opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M 448 300 q 10 40 0 80" fill="none" stroke="#1B1D21" stroke-width="1.4" opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/>
-    <polygon points="310.0,338.0 310.0,380.0 346.0,359.0" fill="#BE8C2C" stroke="none" stroke-width="0" opacity="1" stroke-linejoin="round"/>
-    <rect x="224.0" y="440.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" /><rect x="260.0" y="440.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" /><rect x="296.0" y="440.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" /><rect x="332.0" y="440.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" /><rect x="368.0" y="440.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" /><rect x="404.0" y="440.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" /><rect x="242.0" y="468.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" /><rect x="278.0" y="468.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" /><rect x="314.0" y="468.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" /><rect x="350.0" y="468.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" /><rect x="386.0" y="468.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" /><rect x="422.0" y="468.0" width="26.0" height="14.0" rx="5" fill="#ECDBB0" stroke="#1B1D21" stroke-width="1.6" opacity="1" />
-  </g>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="none" stroke="#1B1D21" stroke-width="1.5" opacity="0.14" />
-</svg>
-<div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" style="background:#BE8C2C"></span><b>会场</b><small>Stay Superlinear · venue</small></figcaption></figure>
-<figure><div class="art"><svg viewBox="0 0 640 640" width="640" height="640" xmlns="http://www.w3.org/2000/svg" role="img">
-  <defs><clipPath id="card"><rect x="24" y="24" width="592" height="592" rx="30"/></clipPath><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#BE6438" opacity="0.13"/></pattern></defs>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="#F4F3F1" stroke="none" stroke-width="0" opacity="1" />
-  <g clip-path="url(#card)">
-    <rect x="24.0" y="24.0" width="592.0" height="592.0" fill="url(#dots)" stroke="none" stroke-width="0" opacity="1" />
-    
-    <rect x="70.0" y="486.0" width="500.0" height="12.0" rx="6" fill="#1B1D21" stroke="none" stroke-width="0" opacity="0.06" /><line x1="78.0" y1="486.0" x2="562.0" y2="486.0" stroke="#1B1D21" stroke-width="2" opacity="0.85" stroke-linecap="round"/>
-    <rect x="150.0" y="452.0" width="340.0" height="16.0" rx="5" fill="#ECCEBE" stroke="#1B1D21" stroke-width="2" opacity="1" /><line x1="184.0" y1="468.0" x2="184.0" y2="486.0" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="456.0" y1="468.0" x2="456.0" y2="486.0" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linecap="round"/>
-    <line x1="224.0" y1="370.0" x2="224.0" y2="354.0" stroke="#BE6438" stroke-width="2" opacity="0.6" stroke-linecap="round"/><line x1="244.9" y1="377.2" x2="254.8" y2="364.6" stroke="#BE6438" stroke-width="2" opacity="0.6" stroke-linecap="round"/><line x1="203.1" y1="377.2" x2="193.2" y2="364.6" stroke="#BE6438" stroke-width="2" opacity="0.6" stroke-linecap="round"/>
-    <circle cx="224.0" cy="404.0" r="26.0" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2.5" opacity="1"/><circle cx="224.0" cy="404.0" r="26.0" fill="#BE6438" stroke="none" stroke-width="0" opacity="0.16"/><path d="M 215 400 q 9 11 18 0" fill="none" stroke="#BE6438" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/><rect x="214.0" y="430.0" width="20.0" height="22.0" fill="#ECCEBE" stroke="#1B1D21" stroke-width="2" opacity="1" /><line x1="214.0" y1="437.0" x2="234.0" y2="437.0" stroke="#1B1D21" stroke-width="1.2" opacity="0.5" stroke-linecap="round"/><line x1="214.0" y1="444.0" x2="234.0" y2="444.0" stroke="#1B1D21" stroke-width="1.2" opacity="0.5" stroke-linecap="round"/>
-    <path d="M 308 356 L 308 388 L 290 442 Q 286 452 300 452 L 344 452 Q 358 452 354 442 L 336 388 L 336 356 Z" fill="#ECCEBE" stroke="#1B1D21" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/><rect x="304.0" y="348.0" width="36.0" height="10.0" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" /><path d="M 295 428 Q 322 434 349 428" fill="none" stroke="#BE6438" stroke-width="3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="312.0" cy="438.0" r="3.4" fill="#BE6438" stroke="none" stroke-width="0" opacity="1"/><circle cx="331.0" cy="434.0" r="2.6" fill="#BE6438" stroke="none" stroke-width="0" opacity="1"/>
-    <rect x="416.0" y="397.0" width="8.0" height="11.0" fill="#1B1D21" stroke="none" stroke-width="0" opacity="1" transform="rotate(0 420 424)"/><rect x="416.0" y="397.0" width="8.0" height="11.0" fill="#1B1D21" stroke="none" stroke-width="0" opacity="1" transform="rotate(45 420 424)"/><rect x="416.0" y="397.0" width="8.0" height="11.0" fill="#1B1D21" stroke="none" stroke-width="0" opacity="1" transform="rotate(90 420 424)"/><rect x="416.0" y="397.0" width="8.0" height="11.0" fill="#1B1D21" stroke="none" stroke-width="0" opacity="1" transform="rotate(135 420 424)"/><rect x="416.0" y="397.0" width="8.0" height="11.0" fill="#1B1D21" stroke="none" stroke-width="0" opacity="1" transform="rotate(180 420 424)"/><rect x="416.0" y="397.0" width="8.0" height="11.0" fill="#1B1D21" stroke="none" stroke-width="0" opacity="1" transform="rotate(225 420 424)"/><rect x="416.0" y="397.0" width="8.0" height="11.0" fill="#1B1D21" stroke="none" stroke-width="0" opacity="1" transform="rotate(270 420 424)"/><rect x="416.0" y="397.0" width="8.0" height="11.0" fill="#1B1D21" stroke="none" stroke-width="0" opacity="1" transform="rotate(315 420 424)"/><circle cx="420.0" cy="424.0" r="20.0" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2.5" opacity="1"/><circle cx="420.0" cy="424.0" r="7.0" fill="#BE6438" stroke="none" stroke-width="0" opacity="1"/>
-  </g>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="none" stroke="#1B1D21" stroke-width="1.5" opacity="0.14" />
-</svg>
-<div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" style="background:#BE6438"></span><b>工作室</b><small>Stay Superlinear · studio</small></figcaption></figure>
-<figure><div class="art"><svg viewBox="0 0 640 640" width="640" height="640" xmlns="http://www.w3.org/2000/svg" role="img">
-  <defs><clipPath id="card"><rect x="24" y="24" width="592" height="592" rx="30"/></clipPath><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#3A4C86" opacity="0.13"/></pattern></defs>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="#F4F3F1" stroke="none" stroke-width="0" opacity="1" />
-  <g clip-path="url(#card)">
-    <rect x="24.0" y="24.0" width="592.0" height="592.0" fill="url(#dots)" stroke="none" stroke-width="0" opacity="1" />
-    
-    <rect x="70.0" y="486.0" width="500.0" height="12.0" rx="6" fill="#1B1D21" stroke="none" stroke-width="0" opacity="0.06" /><line x1="78.0" y1="486.0" x2="562.0" y2="486.0" stroke="#1B1D21" stroke-width="2" opacity="0.85" stroke-linecap="round"/>
-    <path d="M 250 434 C 226 427 208 431 196 444 L 202 474 C 216 462 236 460 250 467 Z" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2.2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M 250 434 C 274 427 292 431 304 444 L 298 474 C 284 462 264 460 250 467 Z" fill="#CCD3E9" stroke="#1B1D21" stroke-width="2.2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/><line x1="250.0" y1="434.0" x2="250.0" y2="467.0" stroke="#1B1D21" stroke-width="1.6" opacity="1" stroke-linecap="round"/><line x1="212.0" y1="450.0" x2="240.0" y2="448.0" stroke="#1B1D21" stroke-width="1" opacity="0.3" stroke-linecap="round"/><line x1="260.0" y1="448.0" x2="288.0" y2="450.0" stroke="#1B1D21" stroke-width="1" opacity="0.3" stroke-linecap="round"/><line x1="212.0" y1="454.0" x2="240.0" y2="452.0" stroke="#1B1D21" stroke-width="1" opacity="0.3" stroke-linecap="round"/><line x1="260.0" y1="452.0" x2="288.0" y2="454.0" stroke="#1B1D21" stroke-width="1" opacity="0.3" stroke-linecap="round"/><line x1="212.0" y1="458.0" x2="240.0" y2="456.0" stroke="#1B1D21" stroke-width="1" opacity="0.3" stroke-linecap="round"/><line x1="260.0" y1="456.0" x2="288.0" y2="458.0" stroke="#1B1D21" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
-    <rect x="300.0" y="452.0" width="150.0" height="20.0" rx="3" fill="#CCD3E9" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="288.0" y="434.0" width="150.0" height="20.0" rx="3" fill="#FFFFFF" stroke="#1B1D21" stroke-width="2" opacity="1" /><rect x="310.0" y="416.0" width="150.0" height="20.0" rx="3" fill="#3A4C86" stroke="#1B1D21" stroke-width="2" opacity="0.85" /><line x1="316.0" y1="462.0" x2="316.0" y2="462.0" stroke="#1B1D21" stroke-width="0" opacity="1" stroke-linecap="round"/><line x1="316.0" y1="444.0" x2="316.0" y2="444.0" stroke="#1B1D21" stroke-width="0" opacity="1" stroke-linecap="round"/><line x1="316.0" y1="426.0" x2="316.0" y2="426.0" stroke="#1B1D21" stroke-width="0" opacity="1" stroke-linecap="round"/>
-    <polygon points="378.0,300.0 452.0,326.0 378.0,352.0 304.0,326.0" fill="#1B1D21" stroke="none" stroke-width="0" opacity="1" stroke-linejoin="round"/><polygon points="340.0,342.0 340.0,372.0 378.0,384.0 416.0,372.0 416.0,342.0" fill="#CCD3E9" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linejoin="round"/><line x1="452.0" y1="326.0" x2="452.0" y2="366.0" stroke="#1B1D21" stroke-width="2" opacity="1" stroke-linecap="round"/><circle cx="452.0" cy="372.0" r="6.0" fill="#3A4C86" stroke="none" stroke-width="0" opacity="1"/>
-  </g>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="none" stroke="#1B1D21" stroke-width="1.5" opacity="0.14" />
-</svg>
-<div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" style="background:#3A4C86"></span><b>课程</b><small>Academy · courses</small></figcaption></figure>
-<figure><div class="art"><svg viewBox="0 0 640 640" width="640" height="640" xmlns="http://www.w3.org/2000/svg" role="img">
-  <defs><clipPath id="card"><rect x="24" y="24" width="592" height="592" rx="30"/></clipPath><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#79982F" opacity="0.13"/></pattern></defs>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="#F4F3F1" stroke="none" stroke-width="0" opacity="1" />
-  <g clip-path="url(#card)">
-    <rect x="24.0" y="24.0" width="592.0" height="592.0" fill="url(#dots)" stroke="none" stroke-width="0" opacity="1" />
-    
-    <rect x="70.0" y="486.0" width="500.0" height="12.0" rx="6" fill="#1B1D21" stroke="none" stroke-width="0" opacity="0.06" /><line x1="78.0" y1="486.0" x2="562.0" y2="486.0" stroke="#1B1D21" stroke-width="2" opacity="0.85" stroke-linecap="round"/>
-    <ellipse cx="322" cy="478" rx="112" ry="28" fill="#DCE7BE" opacity="0.42"/><ellipse cx="322" cy="478" rx="112" ry="28" fill="none" stroke="#79982F" stroke-width="2" stroke-dasharray="5 9" opacity="0.7"/>
-    <path d="M 322 362 q 22 -20 44 -14" fill="none" stroke="#79982F" stroke-width="1.6" stroke-dasharray="3 6" opacity="0.55"/>
-    <line x1="322.0" y1="470.0" x2="322.0" y2="362.0" stroke="#1B1D21" stroke-width="2.6" opacity="1" stroke-linecap="round"/>
-    <path d="M 322 374 q -28 -6 -32 -30 q 26 2 32 24" fill="#DCE7BE" stroke="#1B1D21" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M 322 382 q 28 -6 32 -30 q -26 2 -32 24" fill="#DCE7BE" stroke="#1B1D21" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="322.0" cy="362.0" r="5.0" fill="#79982F" stroke="none" stroke-width="0" opacity="1"/>
-    <circle cx="264.0" cy="430.0" r="3.0" fill="#79982F" stroke="none" stroke-width="0" opacity="0.7"/><circle cx="278.0" cy="396.0" r="2.4" fill="#79982F" stroke="none" stroke-width="0" opacity="0.7"/><circle cx="292.0" cy="368.0" r="2.0" fill="#79982F" stroke="none" stroke-width="0" opacity="0.7"/><circle cx="374.0" cy="420.0" r="3.0" fill="#79982F" stroke="none" stroke-width="0" opacity="0.7"/><circle cx="362.0" cy="388.0" r="2.4" fill="#79982F" stroke="none" stroke-width="0" opacity="0.7"/><circle cx="386.0" cy="396.0" r="2.0" fill="#79982F" stroke="none" stroke-width="0" opacity="0.7"/>
-    <line x1="261.0" y1="362.0" x2="275.0" y2="362.0" stroke="#79982F" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="268.0" y1="355.0" x2="268.0" y2="369.0" stroke="#79982F" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="375.0" y1="372.0" x2="389.0" y2="372.0" stroke="#79982F" stroke-width="2" opacity="1" stroke-linecap="round"/><line x1="382.0" y1="365.0" x2="382.0" y2="379.0" stroke="#79982F" stroke-width="2" opacity="1" stroke-linecap="round"/>
-  </g>
-  <rect x="24.0" y="24.0" width="592.0" height="592.0" rx="30" fill="none" stroke="#1B1D21" stroke-width="1.5" opacity="0.14" />
-</svg>
-<div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" style="background:#79982F"></span><b>实验田</b><small>Superlinear · field</small></figcaption></figure>
+<div class="grid"><figure><div class="art"><img class="tile" data-slug="townhall" src="out/townhall.svg" alt="市政厅"><div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" data-slug="townhall"></span><b>市政厅</b><small>免费区 · townhall</small></figcaption></figure>
+<figure><div class="art"><img class="tile" data-slug="plaza" src="out/plaza.svg" alt="广场"><div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" data-slug="plaza"></span><b>广场</b><small>免费区 · plaza</small></figcaption></figure>
+<figure><div class="art"><img class="tile" data-slug="club" src="out/club.svg" alt="俱乐部"><div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" data-slug="club"></span><b>俱乐部</b><small>Stay Superlinear · club</small></figcaption></figure>
+<figure><div class="art"><img class="tile" data-slug="venue" src="out/venue.svg" alt="会场"><div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" data-slug="venue"></span><b>会场</b><small>Stay Superlinear · venue</small></figcaption></figure>
+<figure><div class="art"><img class="tile" data-slug="studio" src="out/studio.svg" alt="工作室"><div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" data-slug="studio"></span><b>工作室</b><small>Stay Superlinear · studio</small></figcaption></figure>
+<figure><div class="art"><img class="tile" data-slug="courses" src="out/courses.svg" alt="课程"><div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" data-slug="courses"></span><b>课程</b><small>Academy · courses</small></figcaption></figure>
+<figure><div class="art"><img class="tile" data-slug="field" src="out/field.svg" alt="实验田"><div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="0" y="12.5" width="100" height="75" class="g43"/><rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div></div><figcaption><span class="dot" data-slug="field"></span><b>实验田</b><small>Superlinear · field</small></figcaption></figure>
 </div>
-<script>document.getElementById('tg').onchange=function(e){document.body.classList.toggle('guides',e.target.checked)}</script>
+<script>
+const PALS = {"family": {"btn": "v1 七色·现行链接", "dir": "out", "sub": "7 组 · 1:1 · SVG（可改可缩放）· 同族配色 + 统一点纹 · 浅底极简", "ground": "#F4F3F1", "accents": {"townhall": "#3E6FB0", "plaza": "#2E9C8D", "club": "#7A5AA6", "venue": "#BE8C2C", "studio": "#BE6438", "courses": "#3A4C86", "field": "#79982F"}}, "faded-mono": {"btn": "褪色 mono ✅ 终选", "dir": "out-faded-mono", "sub": "暖纸底 #EEEBE0 · 官方墨 #1E1E1E · 官方蓝 #4B96FF→#7E97BD 统一点睛 · ✅ 终选 2026-07-15", "ground": "#EEEBE0", "accents": {"townhall": "#7E97BD", "plaza": "#7E97BD", "club": "#7E97BD", "venue": "#7E97BD", "studio": "#7E97BD", "courses": "#7E97BD", "field": "#7E97BD"}}, "faded-family": {"btn": "褪色七色·备选", "dir": "out-faded-family", "sub": "暖纸底 #EEEBE0 · 官方墨 #1E1E1E · v1 七色统一降饱和 dusty · 备选存档", "ground": "#EEEBE0", "accents": {"townhall": "#6E8CAE", "plaza": "#6D9E96", "club": "#9284AE", "venue": "#C0A36E", "studio": "#C08A6B", "courses": "#7A85A8", "field": "#99A566"}}};
+function setPal(k){
+  const p = PALS[k]; if(!p) return;
+  document.querySelectorAll('img.tile').forEach(im => { im.src = p.dir + '/' + im.dataset.slug + '.svg'; });
+  document.querySelectorAll('.dot').forEach(d => { d.style.background = p.accents[d.dataset.slug]; });
+  document.getElementById('sub').textContent = p.sub;
+  document.getElementById('pal').innerHTML = Object.entries(p.accents)
+    .map(([s,a]) => '<span title="'+s+' '+a+'" style="background:'+a+'"></span>').join('');
+  document.body.style.background = p.ground;
+  document.querySelectorAll('#btns button').forEach(b => b.classList.toggle('on', b.dataset.key===k));
+  try { history.replaceState(null,'','#'+k); } catch(e) {}
+}
+document.querySelectorAll('#btns button').forEach(b => b.onclick = () => setPal(b.dataset.key));
+document.getElementById('tg').onchange = e => document.body.classList.toggle('guides', e.target.checked);
+const init = location.hash.slice(1);
+setPal(PALS[init] ? init : (PALS['faded-mono'] ? 'faded-mono' : 'family'));
+</script>
 </body></html>

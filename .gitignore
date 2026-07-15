@@ -6,3 +6,6 @@ desktop.ini
 # scratch / temp
 *.tmp
 _scratch/
+
+# local working files (decision record archived internally)
+space-illustrations/compare.html

@@ -8,7 +8,7 @@
 
 | 子目录 | 内容 | 状态 |
 |---|---|---|
-| `space-illustrations/` | 7 个 space group 矢量插图（SVG 源 + PNG 成品 + 生成器 + 嵌入链接清单） | ✅ v1（tag `illustrations-v1`） |
+| `space-illustrations/` | 7 个 space group 矢量插图 · 三套配色（✅ 正式=褪色 mono · 七色备份 · v1 legacy）+ 生成器 + 切换画廊 + 嵌入链接清单 | ✅ 定稿 2026-07-15 |
 | `brand-core/` | 官方品牌 token（配色 palette / 字体 typography） | ✅ 初版 |
 | `guidelines/` | Superlinear 社区 / 品牌 guideline 在线版（v2.2 · 网页优先，PDF 后补） | 🚧 占位 |
 | `certificates/` | 结业证书视觉资产 | 🚧 占位 |
@@ -35,10 +35,11 @@
 https://raw.githubusercontent.com/MtsYama/superlinear-visuals/main/<路径>.png
 ```
 
-例（市政厅插图）：
+例（市政厅插图 · 正式版褪色 mono）：
 ```
-https://raw.githubusercontent.com/MtsYama/superlinear-visuals/main/space-illustrations/out/png/townhall.png
+https://raw.githubusercontent.com/MtsYama/superlinear-visuals/main/space-illustrations/out-faded-mono/png/townhall.png
 ```
+三套（正式 / 备份七色 / v1 legacy）完整清单见 `space-illustrations/EMBED-LINKS.md`。
 
 复制 PNG URL → 贴进平台「Embed link」框 → Embed Image。换图只改这一处，不用每次本地上传。
 

@@ -36,6 +36,48 @@ CARD = dict(x=24, y=24, w=592, h=592, rx=30)
 BASE = 486         # 平台基线 y
 SHOW_ORB = False   # 右上角柔光球 · 默认关(它在角上, 3:4/4:3 裁切易被切成残角)
 SAFE = 80          # 安全边距(px·640 基) · 关键元素留在中心 480×480, 兼容 3:4 与 4:3 中心裁切
+BLOCK = "ink"      # 大墨色块: "ink"=v1 原样(课程帽板/工作室齿轮 实心墨) · "soft"=统一去黑块
+                   # 山山 2026-07-15: 全套要么都有黑块锚点要么都无 · 实验版统一走 soft(无)
+
+# ---------------------------------------------------------------- palettes
+# family       = v1 · 7 组同族审美色(上面 GROUPS) —— 已发布, 路径+视觉冻结(链接契约)
+# faded-family = 褪色七色 · 手工感: 暖纸底 + 官方墨 #1E1E1E + v1 七色统一降饱和(dusty)
+# faded-mono   = 褪色 mono: 同底同墨 + 官方蓝 #4B96FF 保色相降饱和 → #7E97BD 统一点睛
+#                (兼顾官方色卡: 墨=Primary1 原样, 蓝=官方蓝 hue 219° 的褪色派生)
+# (2026-07-15 曾试过 official=原样 #0E6EF4 艳蓝 mono, 山山毙 → 已删)
+PALETTES = {
+    "family": dict(
+        ground="#F4F3F1", ink="#1B1D21", ink_soft="#585C63",
+        groups=GROUPS, outdir="out", gallery="gallery.html",
+        title="Stay Superlinear · Space Group 矢量插图",
+        sub="7 组 · 1:1 · SVG（可改可缩放）· 同族配色 + 统一点纹 · 浅底极简"),
+    "faded-family": dict(
+        ground="#EEEBE0", ink="#1E1E1E", ink_soft="#6B675F",
+        groups=[
+            ("townhall", "市政厅",  "免费区",           "#6E8CAE", "#DDE3EA"),
+            ("plaza",    "广场",    "免费区",           "#6D9E96", "#D9E4E1"),
+            ("club",     "俱乐部",  "Stay Superlinear", "#9284AE", "#E1DDE9"),
+            ("venue",    "会场",    "Stay Superlinear", "#C0A36E", "#EBE3D1"),
+            ("studio",   "工作室",  "Stay Superlinear", "#C08A6B", "#EBDCD0"),
+            ("courses",  "课程",    "Academy",          "#7A85A8", "#DCDFE8"),
+            ("field",    "实验田",  "Superlinear",      "#99A566", "#E3E6CF"),
+        ],
+        block="soft", outdir="out-faded-family", gallery="gallery-faded-family.html",
+        title="Space Group 插图 · 褪色七色（手工感实验）",
+        sub="暖纸底 #EEEBE0 · 官方墨 #1E1E1E · v1 七色统一降饱和 dusty · 备选存档"),
+    "faded-mono": dict(
+        ground="#EEEBE0", ink="#1E1E1E", ink_soft="#6B675F",
+        groups=[(s, cn, tier, "#7E97BD", "#DCE2EC") for s, cn, tier, _, _ in GROUPS],
+        block="soft", outdir="out-faded-mono", gallery="gallery-faded-mono.html",
+        title="Space Group 插图 · 褪色 mono（官方蓝降饱和实验）",
+        sub="暖纸底 #EEEBE0 · 官方墨 #1E1E1E · 官方蓝 #4B96FF→#7E97BD 统一点睛 · ✅ 终选 2026-07-15"),
+    "official-beige": dict(
+        ground="#EEEBE0", ink="#1E1E1E", ink_soft="#6B675F",
+        groups=[(s, cn, tier, "#0E6EF4", "#D2E5FF") for s, cn, tier, _, _ in GROUPS],
+        block="soft", outdir="out-official-beige", gallery="gallery-official-beige.html",
+        title="Space Group 插图 · 官方色非褪色 · 米纸底",
+        sub="暖纸底 #EEEBE0 · 官方墨 #1E1E1E · 官方蓝原样 #0E6EF4 点睛(tint=#4B96FF 加白) · 实验稿"),
+}
 
 # ---------------------------------------------------------------- svg helpers
 def rect(x, y, w, h, fill="none", stroke="none", sw=0, rx=0, op=1, extra=""):
@@ -47,7 +89,8 @@ def circle(cx, cy, r, fill="none", stroke="none", sw=0, op=1):
     return (f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r:.1f}" '
             f'fill="{fill}" stroke="{stroke}" stroke-width="{sw}" opacity="{op}"/>')
 
-def line(x1, y1, x2, y2, stroke=INK, sw=3, op=1, cap="round"):
+def line(x1, y1, x2, y2, stroke=None, sw=3, op=1, cap="round"):
+    stroke = INK if stroke is None else stroke  # 运行时取全局 INK · 配合 --palette 切换
     return (f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
             f'stroke="{stroke}" stroke-width="{sw}" opacity="{op}" stroke-linecap="{cap}"/>')
 
@@ -185,11 +228,13 @@ def m_studio(a, t):
              rect(fx-18, 348, 36, 10, fill=WHITE, stroke=INK, sw=2) +
              path(f"M {fx-27} 428 Q {fx} 434 {fx+27} 428", stroke=a, sw=3) +
              circle(fx-10, 438, 3.4, fill=a) + circle(fx+9, 434, 2.6, fill=a))
-    # 齿轮(右 · 小 · 坐台面)
+    # 齿轮(右 · 小 · 坐台面) · 齿: ink 模式=实心墨(v1 原样) / soft 模式=白填充+墨描边(去黑块)
     gx, gy, R = 420, 424, 20
+    tf, ts, tsw = (INK, "none", 0) if BLOCK == "ink" else (WHITE, INK, 2)
     teeth = ""
     for ang in range(0, 360, 45):
-        teeth += rect(gx-4, gy-R-7, 8, 11, fill=INK, extra=f'transform="rotate({ang} {gx} {gy})"')
+        teeth += rect(gx-4, gy-R-7, 8, 11, fill=tf, stroke=ts, sw=tsw,
+                      extra=f'transform="rotate({ang} {gx} {gy})"')
     gear = teeth + circle(gx, gy, R, fill=WHITE, stroke=INK, sw=2.5) + circle(gx, gy, 7, fill=a)
     return group(bench, rays, bulb, flask, gear)
 
@@ -213,8 +258,12 @@ def m_courses(a, t):
     for i in range(1, 4):
         ob += line(212, 446+i*4, 240, 444+i*4, stroke=INK, sw=1, op=0.3)
         ob += line(260, 444+i*4, 288, 446+i*4, stroke=INK, sw=1, op=0.3)
-    # 学位帽
-    cap = poly([(378,300),(452,326),(378,352),(304,326)], fill=INK) + \
+    # 学位帽 · 帽板: ink 模式=实心墨(v1 原样) / soft 模式=强调色填充+墨描边(去黑块)
+    if BLOCK == "ink":
+        board = poly([(378,300),(452,326),(378,352),(304,326)], fill=INK)
+    else:
+        board = poly([(378,300),(452,326),(378,352),(304,326)], fill=a, stroke=INK, sw=2.2)
+    cap = board + \
           poly([(340,342),(340,372),(378,384),(416,372),(416,342)], fill=t, stroke=INK, sw=2) + \
           line(452, 326, 452, 366, stroke=INK, sw=2) + circle(452, 372, 6, fill=a)
     return group(ob, b, cap)
@@ -257,71 +306,213 @@ def build_svg(slug, accent, tint):
             f'xmlns="http://www.w3.org/2000/svg" role="img">\n  '
             f'{defs}\n  {card}\n  {open_g}{motif}{close_g}\n</svg>\n')
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--wide", action="store_true", help="超长超扁版(预留)")
-    args = ap.parse_args()
-    here = os.path.dirname(os.path.abspath(__file__))
-    out = os.path.join(here, "out")
-    os.makedirs(out, exist_ok=True)
-    cards = []
-    for slug, cn, tier, accent, tint in GROUPS:
-        svg = build_svg(slug, accent, tint)
-        with open(os.path.join(out, f"{slug}.svg"), "w", encoding="utf-8") as f:
-            f.write(svg)
-        cards.append((slug, cn, tier, accent))
-    # gallery
+COMPARE_SETS = [
+    ("out",                "v1 · 同族七色（现行上库版 · 嵌入链接在用）"),
+    ("out-official-beige", "官方色非褪色 · 官方米底 #EEEBE0 · 蓝 #0E6EF4"),
+    ("out-faded-mono",     "✅ 褪色 mono · 官方蓝降饱和 #7E97BD（终选）"),
+    ("out-faded-family",   "褪色七色 · 手工感（备选存档）"),
+]
+
+def maybe_compare(here):
+    """COMPARE_SETS 里已生成的变体 ≥2 时输出 compare.html 多列对照。
+    用 <img> 引外部 SVG(不内联), 避免多套 SVG 的 clipPath/pattern id 冲突。"""
+    avail = [(d, lab) for d, lab in COMPARE_SETS
+             if all(os.path.exists(os.path.join(here, d, f"{slug}.svg"))
+                    for slug, *_ in GROUPS)]
+    if len(avail) < 2:
+        return
+    cols = len(avail)
+    rows = ""
+    for slug, cn, tier, _, _ in GROUPS:
+        cells = "".join(
+            f'<figure><img src="{d}/{slug}.svg" alt="{cn} {lab}">'
+            f'<figcaption>{lab}</figcaption></figure>' for d, lab in avail)
+        rows += (f'<section><h2>{cn} <small>{tier} · {slug}</small></h2>'
+                 f'<div class="pair">{cells}</div></section>\n')
+    fullset = ""
+    for d, lab in avail:
+        imgs = "".join(f'<img src="{d}/{s}.svg" alt="{cn}" title="{cn}">' for s, cn, *_ in GROUPS)
+        fullset += (f'<section class="full"><h2>{lab}</h2>'
+                    f'<div class="row7">{imgs}</div></section>\n')
+    if fullset:
+        fullset = '<h1 class="fullhead">整套效果（每排一套 · 7 张连看）</h1>\n' + fullset
+    heads = " · ".join(lab for _, lab in avail)
+    # 终选块: 褪色 mono = 终选(山山 2026-07-15) · 判词表含四方案定论
+    rec = f"""<aside class="rec">
+<h3>✅ 终选：褪色 mono（山山 2026-07-15 定）</h3>
+<ul>
+<li><b>为什么 mono 成立</b>：Circle 里头图永远和空间名并排出现，文字才是导航——七个图形本身（门厅/喷泉/沙发/舞台/工作台/书堆/嫩芽）已足够分辨。「颜色导航」是此前推荐七色的核心理由，经复核在真实场景里不成立。</li>
+<li><b>品牌血缘最纯</b>：米纸底 <code>#EEEBE0</code> 取自官方 icon 带底版 Icon_Azure_HaveBgd；墨 = Primary 1 <code>#1E1E1E</code> 原样；蓝 = 官方 <code>#4B96FF</code> 保色相降饱和 <code>#7E97BD</code>——三要素全部锚定官方色卡。</li>
+<li><b>可扩展性</b>：space 结构还会变；mono 加任意新空间都是同一套底+墨+蓝，零新配色决策；七色方案每加一区都要扩色彩家族。</li>
+<li><b>暖意由纸底承担</b>：官方米底负责手工感与人味，蓝只点睛，不冷；黑块已按统一原则全部去除。</li>
+</ul>
+<table><tr><th>方案</th><th>一句话判词</th></tr>
+<tr><td>v1 同族七色</td><td>现行上库版：已复制的嵌入链接正在用它，按链接契约永久保留、不删不改；新用途不再选它。</td></tr>
+<tr><td>官方非褪色 · 米纸底（已淘汰出列 · 4 列版存归档）</td><td>#0E6EF4 在暖纸上过艳、锚点抢主体，淘汰。</td></tr>
+<tr><td><b>✅ 褪色 mono（终选）</b></td><td><b>官方血缘 + 可扩展 + 克制耐看，定为正式版。</b></td></tr>
+<tr><td>褪色七色（备选存档）</td><td>曾获推荐；「颜色导航」理由复核后不成立，转为备选存档。</td></tr>
+</table>
+</aside>"""
+    html = f"""<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>插图配色对比 · {cols} 版</title>
+<style>
+*{{box-sizing:border-box}}
+body{{margin:0;background:#FAFAF9;color:#1B1D21;
+ font-family:"Segoe UI",Manrope,system-ui,sans-serif;padding:44px}}
+h1{{font-size:24px;margin:0 0 4px}}
+.sub{{color:#585C63;font-size:15px;margin:0 0 26px}}
+.rec{{border:1.5px solid #C0A36E;background:#FDFBF6;border-radius:14px;
+ padding:20px 24px;margin:0 0 36px;max-width:{cols*480}px}}
+.rec h3{{margin:0 0 14px;font-size:17px}}
+.fullhead{{font-size:22px;margin:14px 0 18px}}
+.full{{margin:0 0 24px}}
+.full h2{{font-size:15px;color:#585C63;font-weight:600;margin:0 0 8px}}
+.row7{{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;max-width:{cols*480}px}}
+.row7 img{{width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,.10);background:#fff}}
+.rec ul{{margin:0 0 14px;padding-left:20px;font-size:14.5px;line-height:1.65}}
+.rec li{{margin:0 0 6px}}
+.rec code{{background:rgba(0,0,0,.05);padding:1px 5px;border-radius:4px;font-size:13px}}
+.rec table{{border-collapse:collapse;font-size:14px}}
+.rec th,.rec td{{border:1px solid rgba(0,0,0,.12);padding:7px 12px;text-align:left}}
+.rec th{{background:rgba(0,0,0,.04)}}
+section{{margin:0 0 34px}}
+h2{{font-size:18px;margin:0 0 10px}} h2 small{{color:#585C63;font-weight:400;font-size:13px}}
+.pair{{display:grid;grid-template-columns:repeat({cols},1fr);gap:20px;max-width:{cols*480}px}}
+figure{{margin:0;background:#fff;border:1px solid rgba(0,0,0,.10);border-radius:14px;overflow:hidden}}
+figure img{{display:block;width:100%;height:auto}}
+figcaption{{padding:9px 14px;font-size:13.5px;color:#585C63;border-top:1px solid rgba(0,0,0,.08)}}
+</style></head><body>
+<h1>配色对比（左→右）</h1>
+<p class="sub">{heads}</p>
+{rec}
+{rows}
+{fullset}
+</body></html>"""
+    with open(os.path.join(here, "compare.html"), "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"compare.html updated ({cols} columns: {', '.join(d for d, _ in avail)})")
+
+GALLERY_TEMPLATE = """<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stay Superlinear · Space Group 矢量插图</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#F4F3F1;color:#1B1D21;
+ font-family:"Segoe UI",Manrope,system-ui,-apple-system,sans-serif;padding:48px;transition:background .25s}
+h1{font-size:26px;font-weight:700;margin:0 0 6px}
+.sub{color:#585C63;font-size:16px;margin:0 0 14px}
+.btns{display:flex;gap:10px;margin:0 0 14px;flex-wrap:wrap}
+.btns button{font:600 14.5px/1 "Segoe UI",sans-serif;padding:9px 16px;border-radius:999px;
+ border:1.5px solid rgba(0,0,0,.25);background:#fff;color:#1B1D21;cursor:pointer}
+.btns button.on{background:#1B1D21;color:#fff;border-color:#1B1D21}
+.pal{display:flex;gap:8px;margin:0 0 26px}
+.pal span{width:34px;height:34px;border-radius:8px;border:1px solid rgba(0,0,0,.12)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:26px}
+figure{margin:0;background:#fff;border:1px solid rgba(0,0,0,.10);border-radius:18px;
+ overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.art{position:relative}
+.art img{display:block;width:100%;height:auto}
+.crop-guide{position:absolute;inset:0;display:none;pointer-events:none}
+.crop-guide svg{width:100%;height:100%}
+.crop-guide rect{fill:none;stroke-width:1.4;vector-effect:non-scaling-stroke;stroke-dasharray:5 5}
+.crop-guide .g43{stroke:#D8564B}
+.crop-guide .g34{stroke:#2F6FB0}
+body.guides .crop-guide{display:block}
+.tog{display:inline-flex;align-items:center;gap:8px;font-size:15px;color:#585C63;
+ margin:0 0 22px;cursor:pointer;user-select:none}
+.tog i{font-style:normal;color:#D8564B} .tog b{font-weight:600;color:#2F6FB0}
+figcaption{display:flex;align-items:center;gap:9px;padding:13px 16px;border-top:1px solid rgba(0,0,0,.08)}
+figcaption b{font-size:16px}
+figcaption small{color:#585C63;font-size:13px;margin-left:auto}
+.dot{width:11px;height:11px;border-radius:50%;flex:none}
+</style></head><body>
+<h1>Stay Superlinear · Space Group 矢量插图</h1>
+<p class="sub" id="sub"></p>
+<div class="btns" id="btns">__BTNS__</div>
+<div class="pal" id="pal"></div>
+<label class="tog"><input type="checkbox" id="tg"> 显示裁切安全线（<i>红 4:3</i> / <b>蓝 3:4</b> 中心裁切 · 关键元素应落在两框交叠的中心区内）</label>
+<div class="grid">__TILES__</div>
+<script>
+const PALS = __PALS__;
+function setPal(k){
+  const p = PALS[k]; if(!p) return;
+  document.querySelectorAll('img.tile').forEach(im => { im.src = p.dir + '/' + im.dataset.slug + '.svg'; });
+  document.querySelectorAll('.dot').forEach(d => { d.style.background = p.accents[d.dataset.slug]; });
+  document.getElementById('sub').textContent = p.sub;
+  document.getElementById('pal').innerHTML = Object.entries(p.accents)
+    .map(([s,a]) => '<span title="'+s+' '+a+'" style="background:'+a+'"></span>').join('');
+  document.body.style.background = p.ground;
+  document.querySelectorAll('#btns button').forEach(b => b.classList.toggle('on', b.dataset.key===k));
+  try { history.replaceState(null,'','#'+k); } catch(e) {}
+}
+document.querySelectorAll('#btns button').forEach(b => b.onclick = () => setPal(b.dataset.key));
+document.getElementById('tg').onchange = e => document.body.classList.toggle('guides', e.target.checked);
+const init = location.hash.slice(1);
+setPal(PALS[init] ? init : (PALS['faded-mono'] ? 'faded-mono' : 'family'));
+</script>
+</body></html>
+"""
+
+def build_gallery(here):
+    """gallery.html = 配色 button 切换画廊(山山 2026-07-15 提议)。
+    <img> 引各 outdir 的 SVG · 切换只换 src · 色块/副标题/圆点/页底色联动 · 裁切安全线开关保留。
+    默认 v1(family) · URL hash 指定初始配色(如 gallery.html#faded-mono)。终选后删多余 outdir 即自动缩按钮。"""
+    import json
+    order = [("family", "v1 七色·现行链接"), ("official-beige", "官方非褪色"),
+             ("faded-mono", "褪色 mono ✅ 终选"), ("faded-family", "褪色七色·备选")]
+    pals = {}
+    for key, btn in order:
+        pal = PALETTES.get(key)
+        if not pal:
+            continue
+        d = pal["outdir"]
+        if not all(os.path.exists(os.path.join(here, d, f"{s}.svg")) for s, *_ in GROUPS):
+            continue
+        pals[key] = dict(btn=btn, dir=d, sub=pal["sub"], ground=pal["ground"],
+                         accents={s: a for s, _, _, a, _ in pal["groups"]})
+    if "family" not in pals:
+        return
     overlay = ('<div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none">'
                '<rect x="0" y="12.5" width="100" height="75" class="g43"/>'
                '<rect x="12.5" y="0" width="75" height="100" class="g34"/></svg></div>')
     tiles = ""
-    for slug, cn, tier, accent in cards:
-        art = open(os.path.join(out, slug+".svg"), encoding="utf-8").read()
-        tiles += (f'<figure><div class="art">{art}{overlay}</div>'
-                  f'<figcaption><span class="dot" style="background:{accent}"></span>'
+    for slug, cn, tier, _, _ in GROUPS:
+        tiles += ('<figure><div class="art">'
+                  f'<img class="tile" data-slug="{slug}" src="out/{slug}.svg" alt="{cn}">{overlay}</div>'
+                  f'<figcaption><span class="dot" data-slug="{slug}"></span>'
                   f'<b>{cn}</b><small>{tier} · {slug}</small></figcaption></figure>\n')
-    swatches = "".join(f'<span title="{cn} {a}" style="background:{a}"></span>' for _,cn,_,a,_ in GROUPS)
-    html = f"""<!doctype html><html lang="zh"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Stay Superlinear · Space Group 插图</title>
-<style>
-:root{{--bg:{GROUND};--ink:{INK};--soft:{INK_SOFT}}}
-*{{box-sizing:border-box}}
-body{{margin:0;background:var(--bg);color:var(--ink);
- font-family:"Segoe UI",Manrope,system-ui,-apple-system,sans-serif;padding:48px}}
-h1{{font-size:26px;font-weight:700;margin:0 0 6px}}
-.sub{{color:var(--soft);font-size:16px;margin:0 0 8px}}
-.pal{{display:flex;gap:8px;margin:18px 0 34px}}
-.pal span{{width:34px;height:34px;border-radius:8px;border:1px solid rgba(0,0,0,.12)}}
-.grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:26px}}
-figure{{margin:0;background:#fff;border:1px solid rgba(0,0,0,.10);border-radius:18px;
- overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}}
-.art{{position:relative}}
-.art svg{{display:block;width:100%;height:auto}}
-.crop-guide{{position:absolute;inset:0;display:none;pointer-events:none}}
-.crop-guide svg{{width:100%;height:100%}}
-.crop-guide rect{{fill:none;stroke-width:1.4;vector-effect:non-scaling-stroke;stroke-dasharray:5 5}}
-.crop-guide .g43{{stroke:#D8564B}}
-.crop-guide .g34{{stroke:#2F6FB0}}
-body.guides .crop-guide{{display:block}}
-.tog{{display:inline-flex;align-items:center;gap:8px;font-size:15px;color:var(--soft);
- margin:0 0 22px;cursor:pointer;user-select:none}}
-.tog i{{font-style:normal;color:#D8564B}} .tog b{{font-weight:600;color:#2F6FB0}}
-figcaption{{display:flex;align-items:center;gap:9px;padding:13px 16px;border-top:1px solid rgba(0,0,0,.08)}}
-figcaption b{{font-size:16px}}
-figcaption small{{color:var(--soft);font-size:13px;margin-left:auto}}
-.dot{{width:11px;height:11px;border-radius:50%;flex:none}}
-</style></head><body>
-<h1>Stay Superlinear · Space Group 矢量插图</h1>
-<p class="sub">7 组 · 1:1 · SVG（可改可缩放）· 同族配色 + 统一点纹 · 浅底极简</p>
-<div class="pal">{swatches}</div>
-<label class="tog"><input type="checkbox" id="tg"> 显示裁切安全线（<i>红 4:3</i> / <b>蓝 3:4</b> 中心裁切 · 关键元素应落在两框交叠的中心区内）</label>
-<div class="grid">{tiles}</div>
-<script>document.getElementById('tg').onchange=function(e){{document.body.classList.toggle('guides',e.target.checked)}}</script>
-</body></html>"""
+    btns = "".join(f'<button data-key="{k}">{v["btn"]}</button>' for k, v in pals.items())
+    html = (GALLERY_TEMPLATE
+            .replace("__PALS__", json.dumps(pals, ensure_ascii=False))
+            .replace("__TILES__", tiles)
+            .replace("__BTNS__", btns))
     with open(os.path.join(here, "gallery.html"), "w", encoding="utf-8") as f:
         f.write(html)
-    print("done:", len(cards), "svg + gallery.html ->", out)
+    print("gallery.html updated (switcher:", ", ".join(pals), ")")
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--wide", action="store_true", help="超长超扁版(预留)")
+    ap.add_argument("--palette", choices=list(PALETTES), default="family",
+                    help="family=v1 同族七色(默认·已发布路径冻结) · official=官方品牌色 mono 实验(出 out-official/)")
+    args = ap.parse_args()
+    pal = PALETTES[args.palette]
+    global GROUND, INK, INK_SOFT, BLOCK
+    GROUND, INK, INK_SOFT = pal["ground"], pal["ink"], pal["ink_soft"]
+    BLOCK = pal.get("block", "ink")
+    here = os.path.dirname(os.path.abspath(__file__))
+    out = os.path.join(here, pal["outdir"])
+    os.makedirs(out, exist_ok=True)
+    cards = []
+    for slug, cn, tier, accent, tint in pal["groups"]:
+        svg = build_svg(slug, accent, tint)
+        with open(os.path.join(out, f"{slug}.svg"), "w", encoding="utf-8") as f:
+            f.write(svg)
+        cards.append((slug, cn, tier, accent))
+    build_gallery(here)
+    print("done:", len(cards), "svg ->", out)
+    maybe_compare(here)
 
 if __name__ == "__main__":
     main()
