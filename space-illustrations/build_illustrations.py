@@ -46,13 +46,13 @@ BLOCK = "ink"      # 大墨色块: "ink"=v1 原样(课程帽板/工作室齿轮 
 #                (兼顾官方色卡: 墨=Primary1 原样, 蓝=官方蓝 hue 219° 的褪色派生)
 # (2026-07-15 曾试过 official=原样 #0E6EF4 艳蓝 mono, 山山毙 → 已删)
 PALETTES = {
-    "family": dict(
+    "v1": dict(
         ground="#F4F3F1", ink="#1B1D21", ink_soft="#585C63",
         groups=GROUPS, outdir="out", gallery="gallery.html",
         title="Stay Superlinear · Space Group 矢量插图",
         sub="7 组 · 1:1 · SVG（可改可缩放）· 同族配色 + 统一点纹 · 浅底极简"),
-    "faded-family": dict(
-        ground="#EEEBE0", ink="#1E1E1E", ink_soft="#6B675F",
+    "seven": dict(
+        ground="#F4F3F1", ink="#1E1E1E", ink_soft="#6B675F",
         groups=[
             ("townhall", "市政厅",  "免费区",           "#6E8CAE", "#DDE3EA"),
             ("plaza",    "广场",    "免费区",           "#6D9E96", "#D9E4E1"),
@@ -62,21 +62,21 @@ PALETTES = {
             ("courses",  "课程",    "Academy",          "#7A85A8", "#DCDFE8"),
             ("field",    "实验田",  "Superlinear",      "#99A566", "#E3E6CF"),
         ],
-        block="soft", outdir="out-faded-family", gallery="gallery-faded-family.html",
-        title="Space Group 插图 · 褪色七色（手工感实验）",
-        sub="暖纸底 #EEEBE0 · 官方墨 #1E1E1E · v1 七色统一降饱和 dusty · 备选存档"),
-    "faded-mono": dict(
-        ground="#EEEBE0", ink="#1E1E1E", ink_soft="#6B675F",
+        block="soft", outdir="out-seven", gallery="gallery-faded-family.html",
+        title="Space Group 插图 · seven（备份 · 七色）",
+        sub="浅灰底 #F4F3F1（同 v1·中性暖灰）· 官方墨 #1E1E1E · 七色降饱和 dusty · seven=备份"),
+    "mono": dict(
+        ground="#F4F3F1", ink="#1E1E1E", ink_soft="#6B675F",
         groups=[(s, cn, tier, "#7E97BD", "#DCE2EC") for s, cn, tier, _, _ in GROUPS],
-        block="soft", outdir="out-faded-mono", gallery="gallery-faded-mono.html",
-        title="Space Group 插图 · 褪色 mono（官方蓝降饱和实验）",
-        sub="暖纸底 #EEEBE0 · 官方墨 #1E1E1E · 官方蓝 #4B96FF→#7E97BD 统一点睛 · ✅ 终选 2026-07-15"),
-    "official-beige": dict(
+        block="soft", outdir="out-mono", gallery="gallery-faded-mono.html",
+        title="Space Group 插图 · mono（✅ 正式 · 单蓝）",
+        sub="浅灰底 #F4F3F1（同 v1·中性暖灰）· 官方墨 #1E1E1E · 官方蓝降饱和 #7E97BD 点睛 · ✅ mono=正式(终选 2026-07-15)"),
+    "vivid": dict(
         ground="#EEEBE0", ink="#1E1E1E", ink_soft="#6B675F",
         groups=[(s, cn, tier, "#0E6EF4", "#D2E5FF") for s, cn, tier, _, _ in GROUPS],
-        block="soft", outdir="out-official-beige", gallery="gallery-official-beige.html",
-        title="Space Group 插图 · 官方色非褪色 · 米纸底",
-        sub="暖纸底 #EEEBE0 · 官方墨 #1E1E1E · 官方蓝原样 #0E6EF4 点睛(tint=#4B96FF 加白) · 实验稿"),
+        block="soft", outdir="out-vivid", gallery="gallery-official-beige.html",
+        title="Space Group 插图 · vivid（对照 · 官方米底原蓝）",
+        sub="官方米底 #EEEBE0（Icon_Azure_HaveBgd 同款）· 官方墨 #1E1E1E · 官方蓝原样 #0E6EF4 · vivid=对照存档"),
 }
 
 # ---------------------------------------------------------------- svg helpers
@@ -307,10 +307,10 @@ def build_svg(slug, accent, tint):
             f'{defs}\n  {card}\n  {open_g}{motif}{close_g}\n</svg>\n')
 
 COMPARE_SETS = [
-    ("out",                "v1 · 同族七色（现行上库版 · 嵌入链接在用）"),
-    ("out-official-beige", "官方色非褪色 · 官方米底 #EEEBE0 · 蓝 #0E6EF4"),
-    ("out-faded-mono",     "✅ 褪色 mono · 官方蓝降饱和 #7E97BD（终选）"),
-    ("out-faded-family",   "褪色七色 · 手工感（备选存档）"),
+    ("out",       "v1 · 旧版 · 灰底七色（旧嵌入链接专用）"),
+    ("out-vivid", "vivid · 对照 · 官方米底原蓝 #0E6EF4"),
+    ("out-mono",  "✅ mono · 正式 · 灰底单蓝 #7E97BD（终选）"),
+    ("out-seven", "seven · 备份 · 灰底七色 dusty"),
 ]
 
 def maybe_compare(here):
@@ -339,18 +339,18 @@ def maybe_compare(here):
     heads = " · ".join(lab for _, lab in avail)
     # 终选块: 褪色 mono = 终选(山山 2026-07-15) · 判词表含四方案定论
     rec = f"""<aside class="rec">
-<h3>✅ 终选：褪色 mono（山山 2026-07-15 定）</h3>
+<h3>✅ 终选：mono · 正式版（山山 2026-07-15 定）</h3>
 <ul>
 <li><b>为什么 mono 成立</b>：Circle 里头图永远和空间名并排出现，文字才是导航——七个图形本身（门厅/喷泉/沙发/舞台/工作台/书堆/嫩芽）已足够分辨。「颜色导航」是此前推荐七色的核心理由，经复核在真实场景里不成立。</li>
-<li><b>品牌血缘最纯</b>：米纸底 <code>#EEEBE0</code> 取自官方 icon 带底版 Icon_Azure_HaveBgd；墨 = Primary 1 <code>#1E1E1E</code> 原样；蓝 = 官方 <code>#4B96FF</code> 保色相降饱和 <code>#7E97BD</code>——三要素全部锚定官方色卡。</li>
+<li><b>品牌血缘 + 避开 AI 滥用米底</b>：底改用 <code>#F4F3F1</code> 中性暖灰（山山 2026-07-15 定——奶油米底已是 AI 风指纹，且它比米色更接近官方 Primary 2 <code>#EEEEEE</code>）；墨 = Primary 1 <code>#1E1E1E</code> 原样；蓝 = 官方 <code>#4B96FF</code> 保色相降饱和 <code>#7E97BD</code>。官方米底 <code>#EEEBE0</code> 留在 vivid 对照版。</li>
 <li><b>可扩展性</b>：space 结构还会变；mono 加任意新空间都是同一套底+墨+蓝，零新配色决策；七色方案每加一区都要扩色彩家族。</li>
-<li><b>暖意由纸底承担</b>：官方米底负责手工感与人味，蓝只点睛，不冷；黑块已按统一原则全部去除。</li>
+<li><b>底色定调</b>：中性暖灰不抢戏、不赶奶油风潮；蓝只点睛；黑块已按统一原则全部去除。</li>
 </ul>
 <table><tr><th>方案</th><th>一句话判词</th></tr>
-<tr><td>v1 同族七色</td><td>现行上库版：已复制的嵌入链接正在用它，按链接契约永久保留、不删不改；新用途不再选它。</td></tr>
-<tr><td>官方非褪色 · 米纸底（对照存档 · 平时不用）</td><td>#0E6EF4 在暖纸上过艳、锚点抢主体，不选用；留列做对照。</td></tr>
-<tr><td><b>✅ 褪色 mono（终选）</b></td><td><b>官方血缘 + 可扩展 + 克制耐看，定为正式版。</b></td></tr>
-<tr><td>褪色七色（备选存档）</td><td>曾获推荐；「颜色导航」理由复核后不成立，转为备选存档。</td></tr>
+<tr><td>v1 · 旧版（灰底七色）</td><td>现行上库版：已复制的嵌入链接正在用它，按链接契约永久保留、不删不改；新用途不再选它。</td></tr>
+<tr><td>vivid · 对照（官方米底原蓝 · 平时不用）</td><td>#0E6EF4 在暖纸上过艳、锚点抢主体，不选用；留列做对照。</td></tr>
+<tr><td><b>✅ mono · 正式（灰底单蓝 · 终选）</b></td><td><b>官方血缘 + 可扩展 + 克制耐看，定为正式版。</b></td></tr>
+<tr><td>seven · 备份（灰底七色）</td><td>曾获推荐；「颜色导航」理由复核后不成立，转为备选存档。</td></tr>
 </table>
 </aside>"""
     html = f"""<!doctype html><html lang="zh"><head><meta charset="utf-8">
@@ -449,7 +449,7 @@ function setPal(k){
 document.querySelectorAll('#btns button').forEach(b => b.onclick = () => setPal(b.dataset.key));
 document.getElementById('tg').onchange = e => document.body.classList.toggle('guides', e.target.checked);
 const init = location.hash.slice(1);
-setPal(PALS[init] ? init : (PALS['faded-mono'] ? 'faded-mono' : 'family'));
+setPal(PALS[init] ? init : (PALS['mono'] ? 'mono' : 'v1'));
 </script>
 </body></html>
 """
@@ -459,8 +459,8 @@ def build_gallery(here):
     <img> 引各 outdir 的 SVG · 切换只换 src · 色块/副标题/圆点/页底色联动 · 裁切安全线开关保留。
     默认 v1(family) · URL hash 指定初始配色(如 gallery.html#faded-mono)。终选后删多余 outdir 即自动缩按钮。"""
     import json
-    order = [("family", "v1 七色·现行链接"), ("official-beige", "官方非褪色"),
-             ("faded-mono", "褪色 mono ✅ 终选"), ("faded-family", "褪色七色·备选")]
+    order = [("mono", "✅ mono · 正式"), ("seven", "seven · 备份"),
+             ("vivid", "vivid · 对照"), ("v1", "v1 · 旧版")]
     pals = {}
     for key, btn in order:
         pal = PALETTES.get(key)
@@ -471,7 +471,7 @@ def build_gallery(here):
             continue
         pals[key] = dict(btn=btn, dir=d, sub=pal["sub"], ground=pal["ground"],
                          accents={s: a for s, _, _, a, _ in pal["groups"]})
-    if "family" not in pals:
+    if "v1" not in pals:
         return
     overlay = ('<div class="crop-guide"><svg viewBox="0 0 100 100" preserveAspectRatio="none">'
                '<rect x="0" y="12.5" width="100" height="75" class="g43"/>'
@@ -494,8 +494,8 @@ def build_gallery(here):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--wide", action="store_true", help="超长超扁版(预留)")
-    ap.add_argument("--palette", choices=list(PALETTES), default="family",
-                    help="family=v1 同族七色(默认·已发布路径冻结) · official=官方品牌色 mono 实验(出 out-official/)")
+    ap.add_argument("--palette", choices=list(PALETTES), default="v1",
+                    help="v1=旧版(默认·路径冻结) · mono=正式 · seven=备份 · vivid=对照")
     args = ap.parse_args()
     pal = PALETTES[args.palette]
     global GROUND, INK, INK_SOFT, BLOCK
