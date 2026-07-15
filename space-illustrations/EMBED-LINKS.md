@@ -9,6 +9,11 @@
 - **raw** = 推送后立即可用，最省事
 - **Pages** = GitHub Pages CDN，热链更稳（构建完成后可用，约 1 分钟）
 
+> **🔒 链接稳定保证**：下面所有链接受本库「链接稳定契约」保护（见仓库根 README）——路径永不改名/删除，已复制的链接不会失效。`main` 链接始终显示最新版；若想把某处嵌入**永久钉死在当前 v1 视觉**不随未来改版变化，把 URL 里的 `main` 换成 `illustrations-v1` 即可（tag 快照，内容永不再变）：
+> ```
+> https://raw.githubusercontent.com/MtsYama/superlinear-visuals/illustrations-v1/space-illustrations/out/png/<slug>.png
+> ```
+
 ---
 
 ## 7 张 · PNG 嵌入链接（raster · 贴进 Embed link 框）

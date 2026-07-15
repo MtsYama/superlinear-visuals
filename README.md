@@ -8,10 +8,24 @@
 
 | 子目录 | 内容 | 状态 |
 |---|---|---|
-| `space-illustrations/` | 7 个 space group 矢量插图（SVG 源 + PNG 成品 + 生成器） | ✅ v1 |
-| `guidelines/` | Superlinear 社区 / 品牌 guideline 在线版（v2.2 · 网页优先，PDF 后补） | 🚧 规划中 |
-| `certificates/` | 结业证书模板 / 导出 | 🚧 规划中 |
-| `brand-assets/` | logo · 配色 · 字体 · banner 等共用视觉件 | 🚧 规划中 |
+| `space-illustrations/` | 7 个 space group 矢量插图（SVG 源 + PNG 成品 + 生成器 + 嵌入链接清单） | ✅ v1（tag `illustrations-v1`） |
+| `brand-core/` | 官方品牌 token（配色 palette / 字体 typography） | ✅ 初版 |
+| `guidelines/` | Superlinear 社区 / 品牌 guideline 在线版（v2.2 · 网页优先，PDF 后补） | 🚧 占位 |
+| `certificates/` | 结业证书视觉资产 | 🚧 占位 |
+| `brand-assets/` | logo · banner · 头图等共用视觉件 | 🚧 占位 |
+
+## 🔒 链接稳定契约（本库硬规则）
+
+已经被复制出去、嵌进平台的链接**永远不能断**。因此：
+
+1. **已发布路径永不改名、永不删除**。`space-illustrations/out/png/*.png` 这类已被引用的路径是冻结的；新内容只**新增**文件/目录，不动旧路径。
+2. **分支就叫 `main`，库名不改，库不转私有**——这三样任何一个变了，所有 raw 链接全断。
+3. **原地修订 vs 换版**：小修（错位、瑕疵）允许原地覆盖同名 PNG——所有嵌入处自动显示新图（这是图床的优点）；**大改版**（例如换成官方品牌配色）出**新文件名或新目录**（如 `out/png-v2/`），旧文件原样保留。
+4. **要永久冻结某个版本**：用 tag 链接代替 `main`。tag 指向的内容永不再变：
+   ```
+   https://raw.githubusercontent.com/MtsYama/superlinear-visuals/illustrations-v1/space-illustrations/out/png/townhall.png
+   ```
+   `main` 链接 = 始终最新；tag 链接 = 永久快照。两种都长期有效，按需选。
 
 ## 怎么拿嵌入链接（Embed link）
 
