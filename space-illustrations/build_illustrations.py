@@ -302,17 +302,17 @@ MOTIFS = dict(townhall=m_townhall, plaza=m_plaza, club=m_club, venue=m_venue,
 # 横版构图: 主体右置(中心 x=920/1280 ≈72%W) · 左 52% + 底 28% 留白给叠字 ·
 # 全出血无卡框(裁切不露边) · 抗 1.5:1~2:1 中心裁。1:1 方版保留为 base。
 WIDE_W, WIDE_H = 1280, 720
-WIDE_S  = 1.12                    # 主体放大 1.12(1:1 原尺寸在横幅里显小 · 2026-07-15 二调)
-WIDE_TX = 819.2 - 322 * WIDE_S    # 主体中心 322→819(64%W · 右置不贴边 · 一调 72%W 太贴右)
-WIDE_TY = 440.0 - 486 * WIDE_S    # 基线 486→440(下方留给叠印描述 · 山山确认上下 OK)
+WIDE_S  = 1.25                    # 三调(山山 mock): 不压字前提下的最大号(主体顶到 y30)
+WIDE_TX = 640.0 - 322 * WIDE_S    # 主体水平完全居中(50%W · 山山 mock 定稿方向)
+WIDE_TY = 450.0 - 486 * WIDE_S    # 基线 486→450 · 平台线贴文字带上沿(带从 62%H≈y446 起)
 
 def build_wide_svg(slug, accent, tint):
     dots = (f'<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">'
             f'<circle cx="2" cy="2" r="1.5" fill="{accent}" opacity="0.13"/></pattern>')
     ground = rect(0, 0, WIDE_W, WIDE_H, fill=GROUND)
     tex    = rect(0, 0, WIDE_W, WIDE_H, fill="url(#dots)")
-    plat   = (rect(606, 440, 426, 12, fill=INK, op=0.06, rx=6) +
-              line(614, 440, 1024, 440, stroke=INK, sw=2, op=0.85))
+    plat   = (rect(405, 450, 470, 12, fill=INK, op=0.06, rx=6) +
+              line(413, 450, 867, 450, stroke=INK, sw=2, op=0.85))
     motif  = MOTIFS[slug](accent, tint)
     return (f'<svg viewBox="0 0 {WIDE_W} {WIDE_H}" width="{WIDE_W}" height="{WIDE_H}" '
             f'xmlns="http://www.w3.org/2000/svg" role="img">\n'
