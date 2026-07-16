@@ -38,6 +38,11 @@ Pages 版（CDN 更稳）：把域名段换成 `https://mtsyama.github.io/superl
 
 前缀：`https://raw.githubusercontent.com/MtsYama/superlinear-visuals/main/space-illustrations/out-mono/wide/png/`
 
+### 📐 mono banner 版（2.8:1 · Circle Directory 官方推荐比例 · 2026-07-16 加）
+
+840×300 设计 · 1680×600 PNG · 主体右置左半留叠字区。**备选**：仅当实测 app 卡片为扁长条时用（当前观测卡片 ≈1.63:1 → wide 版为准）。
+前缀：`.../main/space-illustrations/out-mono/banner/png/`，7 个 slug 同上。
+
 | 空间 | 横版 PNG 直链 |
 |---|---|
 | 市政厅 | `…/out-mono/wide/png/townhall.png` |

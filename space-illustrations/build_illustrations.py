@@ -306,6 +306,27 @@ WIDE_S  = 1.25                    # 三调(山山 mock): 不压字前提下的�
 WIDE_TX = 640.0 - 322 * WIDE_S    # 主体水平完全居中(50%W · 山山 mock 定稿方向)
 WIDE_TY = 450.0 - 486 * WIDE_S    # 基线 486→450 · 平台线贴文字带上沿(带从 62%H≈y446 起)
 
+# banner (2.8:1 · Circle Directory 官方推荐 840×300 · 2026-07-16)
+# 仅当实测 app 卡片为扁长条时用; 当前观测卡片 ≈1.63:1 → wide 版为准, banner 是备选。
+# 构图: 主体缩 0.6 置右(63%W) · 基线 y250 · 左下留叠字区。
+BANNER_W, BANNER_H = 840, 300
+BANNER_S  = 0.6
+BANNER_TX = 529.2 - 322 * BANNER_S
+BANNER_TY = 250.0 - 486 * BANNER_S
+
+def build_banner_svg(slug, accent, tint):
+    dots = (f'<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">'
+            f'<circle cx="2" cy="2" r="1.5" fill="{accent}" opacity="0.13"/></pattern>')
+    ground = rect(0, 0, BANNER_W, BANNER_H, fill=GROUND)
+    tex    = rect(0, 0, BANNER_W, BANNER_H, fill="url(#dots)")
+    plat   = (rect(379, 250, 300, 10, fill=INK, op=0.06, rx=5) +
+              line(387, 250, 671, 250, stroke=INK, sw=2, op=0.85))
+    motif  = MOTIFS[slug](accent, tint)
+    return (f'<svg viewBox="0 0 {BANNER_W} {BANNER_H}" width="{BANNER_W}" height="{BANNER_H}" '
+            f'xmlns="http://www.w3.org/2000/svg" role="img">\n'
+            f'<defs>{dots}</defs>\n  {ground}\n  {tex}\n  {plat}\n'
+            f'  <g transform="translate({BANNER_TX:.1f},{BANNER_TY:.1f}) scale({BANNER_S})">\n    {motif}\n  </g>\n</svg>\n')
+
 def build_wide_svg(slug, accent, tint):
     dots = (f'<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">'
             f'<circle cx="2" cy="2" r="1.5" fill="{accent}" opacity="0.13"/></pattern>')
@@ -516,6 +537,7 @@ def build_gallery(here):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--wide", action="store_true", help="横版 16:9(1280x720) · 主体右置 · 左/下留叠字区 · 出 <outdir>/wide/")
+    ap.add_argument("--banner", action="store_true", help="banner 2.8:1(840x300 · Circle Directory 官方推荐) · 出 <outdir>/banner/")
     ap.add_argument("--palette", choices=list(PALETTES), default="v1",
                     help="v1=旧版(默认·路径冻结) · mono=正式 · seven=备份 · vivid=对照")
     args = ap.parse_args()
@@ -533,6 +555,14 @@ def main():
             with open(os.path.join(wout, f"{slug}.svg"), "w", encoding="utf-8") as f:
                 f.write(build_wide_svg(slug, accent, tint))
         print("wide:", len(pal["groups"]), "svg ->", wout)
+        return
+    if args.banner:  # banner 模式: 只出 2.8:1 到 <outdir>/banner/
+        bout = os.path.join(out, "banner")
+        os.makedirs(bout, exist_ok=True)
+        for slug, cn, tier, accent, tint in pal["groups"]:
+            with open(os.path.join(bout, f"{slug}.svg"), "w", encoding="utf-8") as f:
+                f.write(build_banner_svg(slug, accent, tint))
+        print("banner:", len(pal["groups"]), "svg ->", bout)
         return
     cards = []
     for slug, cn, tier, accent, tint in pal["groups"]:
